@@ -37,6 +37,10 @@ class IdentifyFragment : Fragment() {
     private lateinit var visibilityStopButtonObjectAnimator: ObjectAnimator
     private lateinit var visibilityWaveViewObjectAnimator: ObjectAnimator
 
+    private lateinit var idleFileFloatingActionButtonObjectAnimator: ObjectAnimator
+
+    private lateinit var visibilityFileFloatingActionButtonObjectAnimator: ObjectAnimator
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -57,11 +61,22 @@ class IdentifyFragment : Fragment() {
                 runCatching { launcher.launch(Manifest.permission.RECORD_AUDIO) }
             }
         }
+
+        binding.fileFloatingActionButton.setOnClickListener {
+            if (true) {
+                val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) {
+                }
+                getContent.launch("downloads/*")
+
+            } else {
+                runCatching { launcher.launch(Manifest.permission.RECORD_AUDIO) }
+            }
+        }
         binding.stopButton.setOnClickListener {
             identifyViewModel.stop()
         }
 
-     viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     identifyViewModel.error.collect {
@@ -98,6 +113,27 @@ class IdentifyFragment : Fragment() {
                     }
                 }
             }
+        }
+
+        // file upload animation, same as audio record animation, but reversed for better look
+        idleFileFloatingActionButtonObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(
+            binding.fileFloatingActionButton,
+            PropertyValuesHolder.ofFloat(View.SCALE_X, 1.4F, 1.0F),
+            PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.4F, 1.0F),
+        ).apply {
+            duration = 2000L
+            interpolator = AccelerateDecelerateInterpolator()
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }
+        visibilityFileFloatingActionButtonObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(
+            binding.fileFloatingActionButton,
+            PropertyValuesHolder.ofFloat(View.SCALE_X, 0.5F, 1.0F),
+            PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.5F, 1.0F),
+            PropertyValuesHolder.ofFloat(View.ALPHA, 0.0F, 1.0F),
+        ).apply {
+            duration = 200L
+            interpolator = AccelerateDecelerateInterpolator()
         }
 
         idleFloatingActionButtonObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(
@@ -173,6 +209,7 @@ class IdentifyFragment : Fragment() {
 
     private fun animateToRecordButton() {
         idleFloatingActionButtonObjectAnimator.start()
+        idleFileFloatingActionButtonObjectAnimator.start()
 
         if (binding.recordFloatingActionButton.alpha == 0.0F) {
             visibilityRecordFloatingActionButtonObjectAnimator.start()
