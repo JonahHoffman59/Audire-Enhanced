@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.alexmercerind.audire.app-mergeDebugResources-49:/values-v29/values-v29.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\jonah\\AndroidStudioProjects\\audire-main69\\app\\src\\main\\res\\values-v29\\themes.xml",
+                    "from": {
+                        "startLines": "1,11,17",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "63,684,1049",
+                        "endLines": "9,15,17",
+                        "endColumns": "12,12,60",
+                        "endOffsets": "678,1043,1105"
+                    },
+                    "to": {
+                        "startLines": "2,11,16",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,675,1039",
+                        "endLines": "10,15,16",
+                        "endColumns": "12,12,59",
+                        "endOffsets": "670,1034,1094"
+                    }
+                }
+            ]
+        }
+    ]
+}

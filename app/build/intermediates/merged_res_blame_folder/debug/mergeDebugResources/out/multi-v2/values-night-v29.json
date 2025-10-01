@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.alexmercerind.audire.app-mergeDebugResources-49:/values-night-v29/values-night-v29.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\jonah\\AndroidStudioProjects\\audire-main69\\app\\src\\main\\res\\values-night-v29\\themes.xml",
+                    "from": {
+                        "startLines": "1,11,17",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "63,685,1050",
+                        "endLines": "9,15,17",
+                        "endColumns": "12,12,60",
+                        "endOffsets": "679,1044,1106"
+                    },
+                    "to": {
+                        "startLines": "2,11,16",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,676,1040",
+                        "endLines": "10,15,16",
+                        "endColumns": "12,12,59",
+                        "endOffsets": "671,1035,1095"
+                    }
+                }
+            ]
+        }
+    ]
+}
